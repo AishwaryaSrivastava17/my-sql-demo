@@ -26,4 +26,11 @@ public class User {
 	@NotNull
 	@NotBlank
 	private String name;
+	private long phoneNumber;
+	public long getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 }

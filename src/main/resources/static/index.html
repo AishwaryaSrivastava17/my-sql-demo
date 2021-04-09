@@ -4,49 +4,75 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function sendData() {
-		function sucess(response){
+	function saveUser() {
+		function success(response){
 			return response.json();
-		}
+			
+		} 
 		function errorHandler(error){
 			console.log(error);
-		//	return response.json();
 		}
 		console.log('2');
-		const promise=fetch('/user', {
-			method:'POST',
-			headers: {
-			      'Content-Type': 'application/json'
-			    },
-			    body:JSON.stringify({
-			    	name: document.getElementById('username').value
-			    })
-			    		    
+		const userform = document.getElementById('userform');
+		
+		if(!userform.checkValidity()){
+			alert('form is invalid');
+			return;
+		}
+		const promise = fetch('/user', { //ajax request, Asynchronous javascript and xml
+			method : 'POST',
+			headers : {
+				'Content-Type' : 'application/json'
+			},
+			body : JSON.stringify({
+				phoneNumber: document.getElementById('phone').value,
+				name : document.getElementById('username').value
+			})
 		});
 		promise.then(success);
 		promise.then(function(data){
 			console.log(data);
-		})
-//		promise.error(errorHandler);
-      promise  .catch(function(error){
-				    console.log(error);
-      });
+		});
+		promise.catch(function(error){
+			console.log(error);
+		});
 		console.log('1');
 	}
+	
 	function getUsers(){
-		const promise=fetch('/user');
+		const promise = fetch('/user');
 		promise.then(function(response){
 			return response.json();
 		})
 		.then(function(users){
 			console.log(users);
+			const table = document.getElementById('users');
+			for(let index=0; index< users.length;index++){
+				console.log(users[index]);
+				const currentUser = users[index];
+				const row = document.createElement('tr');
+				const nameColumn = document.createElement('td');
+				nameColumn.append(currentUser.name);
+				row.appendChild(nameColumn);
+				table.appendChild(row);
+			}
 		})
 	}
 </script>
 </head>
 <body>
-	<input id='username' placeholder="Name">
-	<button onclick="sendData()">Save</button>
+	<h3>Userform</h3>
+	<form id='userform'>
+		<input id='username' placeholder="Name" required> 
+		<input type='tel' placeholder='Phone Number' pattern="[0-9]{10}" required id='phone'>
+		<button onclick="saveUser()">Save</button>
+	</form>
 	<button onclick="getUsers()">Get Users</button>
+	<table>
+		<thead>
+			<td>Name</td>
+		</thead>
+		<tbody id='users'></tbody>
+	</table>
 </body>
-</html> 
+</html>
