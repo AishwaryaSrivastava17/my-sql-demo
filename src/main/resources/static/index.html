@@ -5,7 +5,15 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function sendData() {
-		fetch('/user', {
+		function sucess(response){
+			return response.json();
+		}
+		function errorHandler(error){
+			console.log(error);
+		//	return response.json();
+		}
+		console.log('2');
+		const promise=fetch('/user', {
 			method:'POST',
 			headers: {
 			      'Content-Type': 'application/json'
@@ -13,12 +21,32 @@
 			    body:JSON.stringify({
 			    	name: document.getElementById('username').value
 			    })
+			    		    
 		});
+		promise.then(success);
+		promise.then(function(data){
+			console.log(data);
+		})
+//		promise.error(errorHandler);
+      promise  .catch(function(error){
+				    console.log(error);
+      });
+		console.log('1');
+	}
+	function getUsers(){
+		const promise=fetch('/user');
+		promise.then(function(response){
+			return response.json();
+		})
+		.then(function(users){
+			console.log(users);
+		})
 	}
 </script>
 </head>
 <body>
 	<input id='username' placeholder="Name">
 	<button onclick="sendData()">Save</button>
+	<button onclick="getUsers()">Get Users</button>
 </body>
 </html> 
