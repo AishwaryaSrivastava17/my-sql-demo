@@ -48,13 +48,26 @@
 		.then(function(users){
 			console.log(users);
 			const table = document.getElementById('users');
+			const rows=	table.children.length;
+		for(let count=0;count<rows;count++){
+			table.children[0].remove();
+		}
 			for(let index=0; index< users.length;index++){
 				console.log(users[index]);
 				const currentUser = users[index];
 				const row = document.createElement('tr');
+				const idColumn = document.createElement('td');
 				const nameColumn = document.createElement('td');
+				const phoneNumberColumn = document.createElement('td');
+				const dobColumn = document.createElement('td');
+				idColumn.append(currentUser.id);
 				nameColumn.append(currentUser.name);
+				phoneNumberColumn.append(currentUser.phoneNumber);
+				dobColumn.append(currentUser.dob);
+				row.appendChild(idColumn);
 				row.appendChild(nameColumn);
+				row.appendChild(phoneNumberColumn);
+				row.appendChild(dobColumn);
 				table.appendChild(row);
 			}
 		})
@@ -64,19 +77,23 @@
 <body>
 	<h3>Userform</h3>
 	<form id='userform'>
-		<input id='username' placeholder="Name" required> 
-		<input type='tel' placeholder='Phone Number' pattern="[0-9]{10}" required id='phone'>
-		<input type='date' placeholder="DOB" required id='dob'> 	
-			</form>
-		<button onclick="saveUser()">Save</button>
+		<input id='username' placeholder="Name" required> <input
+			type='tel' placeholder='Phone Number' pattern="[0-9]{10}" required
+			id='phone'> <input type='date' placeholder="DOB" required
+			id='dob'>
+	</form>
+	<button onclick="saveUser()">Save</button>
 	<button onclick="getUsers()">Get Users</button>
 
 	<table>
 		<thead>
-			<td>Name</td>
-			
-		</thead>
-		<tbody id='users'></tbody>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Phone Number</th>
+		<th>Dob</th>
+	</thead>
+	<tbody id='users'>
+	</tbody>
 	</table>
 </body>
 </html>
