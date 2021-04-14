@@ -3,7 +3,36 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+ table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+     
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      h3{
+      text-align:center;
+      }
+form {
+    width: 200px;
+    margin: 0 auto;
+     }
+    .container{
+    text-align:center;
+   
+    }
+</style>
 <script type="text/javascript">
+
 	function saveUser() {
 		function success(response){
 			return response.json();
@@ -75,25 +104,32 @@
 </script>
 </head>
 <body>
-	<h3>Userform</h3>
-	<form id='userform'>
-		<input id='username' placeholder="Name" required> <input
-			type='tel' placeholder='Phone Number' pattern="[0-9]{10}" required
-			id='phone'> <input type='date' placeholder="DOB" required
-			id='dob'>
-	</form>
-	<button onclick="saveUser()">Save</button>
-	<button onclick="getUsers()">Get Users</button>
+	<body>
 
+	<div class="jumbotron">
+		<h3>User Form</h3>
+	<form id='userform'>
+		<input id='username' placeholder="Name" required> <br>
+		<input type='tel' placeholder='Phone Number' pattern="[0-9]{10}" required id='phone'><br>
+
+		<input type="date" placeholder='DOB' required id='dob'>
+		
+	</form>
+	<br>
+	<div class ="container">
+	<button class="btn-primary" onclick="saveUser()">Save</button><br><br>
+	<button class="btn-success" onclick="getUsers()">Get Users</button>
+	</div>
 	<table>
 		<thead>
-		<th>Id</th>
-		<th>Name</th>
-		<th>Phone Number</th>
-		<th>Dob</th>
-	</thead>
-	<tbody id='users'>
-	</tbody>
+		<td>Id </td>
+			<td>Name</td>
+			<td>Phone Number</td>
+			<td>Date Of Birth</td>
+			
+		</thead>
+		<tbody id='users'></tbody>
 	</table>
+</body>
 </body>
 </html>
