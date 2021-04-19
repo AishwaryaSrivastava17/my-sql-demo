@@ -1,8 +1,6 @@
 package com.example.mysqldemo.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +19,10 @@ public int save(User user) {
 public List<User> getUsers() {
 	return userRepository.findAll();
 }
-@Override
-public Optional<User> getUser(Integer userId) {
-	return userRepository.findById(userId);
-}
+//@Override
+//public List<User> getUser(Integer userId) {
+//	return userRepository.findById(userId);
+//}
 @Override
 public void updateUser(User user) {
 	userRepository.save(user);
@@ -33,5 +31,11 @@ public void updateUser(User user) {
 @Override
 public void deleteUser(Integer userId) {
 	userRepository.deleteById(userId);
+}
+
+@Override
+public List<User> getUserByName(String name) {
+
+	return userRepository.getUserByName(name);
 }
 }
