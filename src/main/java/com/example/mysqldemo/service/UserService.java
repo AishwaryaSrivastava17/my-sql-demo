@@ -30,4 +30,8 @@ public void updateUser(User user) {
 	userRepository.save(user);
 	
 }
+@Override
+public void deleteUser(Integer userId) {
+	userRepository.deleteById(userId);
+}
 }

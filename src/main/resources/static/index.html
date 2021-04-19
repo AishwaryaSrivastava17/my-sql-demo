@@ -35,13 +35,12 @@ form {
 
 	function saveUser() {
 		function success(response){
+			if(!response.ok)
+				{alert('error happen');}
 			return response.json();
 			
 		} 
-		function errorHandler(error){
-			console.log(error);
-		}
-		console.log('2');
+		
 		const userform = document.getElementById('userform');
 		
 		if(!userform.checkValidity()){
@@ -63,12 +62,8 @@ form {
 		promise.then(function(data){
 			console.log(data);
 		});
-		promise.catch(function(error){
-			console.log(error);
-		});
-		console.log('1');
 	}
-	
+		
 	function getUsers(){
 		const promise = fetch('/user');
 		promise.then(function(response){

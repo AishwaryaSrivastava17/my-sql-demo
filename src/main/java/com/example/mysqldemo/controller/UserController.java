@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,9 +33,13 @@ public class UserController {
 		return userService.getUsers();
 	}
 
-	@GetMapping("user/{id}")
-	Optional<User> getUser(@PathVariable("id") Integer userId) {
-		return userService.getUser(userId);
+//	@GetMapping("user/{id}")
+//	Optional<User> getUser(@PathVariable("id") Integer userId) {
+//		return userService.getUser(userId);
+//	}
+	@DeleteMapping("user/{id}")
+	void getAllUsers(@PathVariable("id") Integer userId) {
+		userService.deleteUser(userId);
 	}
 	private void validateModel(Errors bindingResult) {
 		if (bindingResult.hasErrors()) {

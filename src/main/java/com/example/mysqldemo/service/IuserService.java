@@ -15,6 +15,8 @@ void updateUser(User user);
 
 Optional<User> getUser(Integer userId);
 
+void deleteUser(Integer userId);
+
 
 
 }
